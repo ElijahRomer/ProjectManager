@@ -28,16 +28,34 @@ submitContractButtonEl.on('click', addContractToList)
 function addContractToList(eventObject){
   eventObject.preventDefault();
   console.log('Button Works');
-  captureFormSubmitValues();
+  let currentContractObject = captureFormSubmitValues();
+     console.log(currentContractObject)
+      console.log(currentContractObject.projectDueDate.diff())
+      console.log(currentContractObject.daysUntilDueDate())
+      console.log(currentContractObject.potentialEarnings())
 
 }
 
 class Contract {
   constructor(projectName, projectType, projectHourlyPay, projectDueDate){
-  this.projectName = projectName;
-  this.projectType = projectType;
-  this.projectHourlyPay = projectHourlyPay;
-  this.projectDueDate = projectDueDate;
+    this.projectName = projectName;
+    this.projectType = projectType;
+    this.projectHourlyPay = projectHourlyPay;
+    this.projectDueDate = projectDueDate;
+  }
+
+  daysUntilDueDate(){
+    let milliseconds = this.projectDueDate.diff();
+      // console.log(milliseconds);
+      // console.log(millisecondsToDays(milliseconds));
+    return millisecondsToDays(milliseconds);
+  }
+
+  potentialEarnings(){
+    // console.log(`Days left until due date: ${this.daysUntilDueDate()}`);
+    // console.log(`Hourly Pay for Project: ${this.projectHourlyPay}`);
+    // console.log(`Potential total earnings for Project: ${this.daysUntilDueDate() * this.projectHourlyPay}`);
+    return this.daysUntilDueDate() * this.projectHourlyPay
   }
 }
 
@@ -45,21 +63,35 @@ function captureFormSubmitValues(){
   let projectName = $('#project-name').val();
   let projectType = $('#project-type').val();
   let projectHourlyPay = parseInt($('#project-hourly-pay').val());
-  let projectDueDate = $('#due-date-picker').val();
+  let projectDueDate = moment($('#due-date-picker').val());
+  // let formSubmitValueArray = Array.of(projectName, projectType, projectHourlyPay, projectDueDate);
+  let currentContractObject = new Contract(projectName, projectType, projectHourlyPay, projectDueDate);
+
+
+  console.log(projectDueDate)
+  console.log(projectDueDate.toString())
+  console.log(typeof projectDueDate)
+
+
+
+  return currentContractObject;
+
   console.log(projectName)
   console.log(typeof projectName)
   console.log(projectType)
   console.log(typeof projectType)
   console.log(projectHourlyPay)
-  console.log(typeof projectHourlyPay)
-  console.log(projectDueDate)
-  console.log(typeof projectDueDate)
-  let processingContract = new Contract(projectName, projectType, projectHourlyPay, projectDueDate);
-  console.log(processingContract);
-
-
 
 }
+
+function millisecondsToDays(milliseconds) {
+  let seconds = milliseconds/1000;
+  let minutes = seconds/60;
+  let hours = minutes/60;
+  let days = hours/24;
+return Math.floor(days);
+}
+
 // In this project, you will work with others to create a project tracker application using Bootstrap, jQuery, jQueryUI, Moment, and Google Fonts. Break up these phases amongst members of your team.
 
 // Instructions
