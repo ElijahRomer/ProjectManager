@@ -3,7 +3,7 @@ console.log('If this is logged, then app.js is linked correctly.');
 console.log(moment().format('MMMM Do YYYY, h:mm:ss a'));
 
 
-//initial render of date/time on page to maintain formatting
+//initial render of date/time on page to maintain formatting through page load
 let dateTimeEl = $('#date-time')[0];
 dateTimeEl.textContent =(moment().format('MMMM Do YYYY, h:mm:ss a'));
 
@@ -13,12 +13,53 @@ function updateDateTime(){
   dateTimeEl.textContent =(moment().format('MMMM Do YYYY, h:mm:ss a'));
 }
 
-$('<ul id="test"><li>HELLO</li><li>IT WORKS</li></ul>').appendTo($("body"));
 
-$('#dueDatePicker').datepicker({
+$('#due-date-picker').datepicker({
   changeMonth: true,
   changeYear: true,
+  dateFormat: "yy-mm-dd"
 });
+
+let submitContractButtonEl = $('#submit-contract');
+console.log(submitContractButtonEl);
+
+submitContractButtonEl.on('click', addContractToList)
+
+function addContractToList(eventObject){
+  eventObject.preventDefault();
+  console.log('Button Works');
+  captureFormSubmitValues();
+
+}
+
+class Contract {
+  constructor(projectName, projectType, projectHourlyPay, projectDueDate){
+  this.projectName = projectName;
+  this.projectType = projectType;
+  this.projectHourlyPay = projectHourlyPay;
+  this.projectDueDate = projectDueDate;
+  }
+}
+
+function captureFormSubmitValues(){
+  let projectName = $('#project-name').val();
+  let projectType = $('#project-type').val();
+  let projectHourlyPay = parseInt($('#project-hourly-pay').val());
+  let projectDueDate = $('#due-date-picker').val();
+  console.log(projectName)
+  console.log(typeof projectName)
+  console.log(projectType)
+  console.log(typeof projectType)
+  console.log(projectHourlyPay)
+  console.log(typeof projectHourlyPay)
+  console.log(projectDueDate)
+  console.log(typeof projectDueDate)
+  let processingContract = new Contract(projectName, projectType, projectHourlyPay, projectDueDate);
+  console.log(processingContract);
+
+
+
+}
 // In this project, you will work with others to create a project tracker application using Bootstrap, jQuery, jQueryUI, Moment, and Google Fonts. Break up these phases amongst members of your team.
 
 // Instructions
