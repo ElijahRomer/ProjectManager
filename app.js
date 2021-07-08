@@ -42,7 +42,7 @@ class Contract {
     this.projectDueDate = projectDueDate;
     this.daysUntilDue = millisecondsToDays(moment(this.projectDueDate).diff());
     console.log(moment(this.projectDueDate).diff(moment()));
-    this.potentialEarnings = `$${this.daysUntilDue * this.projectHourlyPay}`;
+    this.potentialEarnings = `$${this.daysUntilDue * 8 * this.projectHourlyPay}`;
   }
      
   daysUntilDueDate(){
@@ -84,8 +84,7 @@ function millisecondsToDays(milliseconds) {
 
 function createContractEl(contract){
   console.log(`createContractEl FIRED`);
-  // console.log(contract.daysUntilDue)
-  // console.log(contract.potentialEarnings)
+
   let tableBody = $('tbody');
   let contractRow = $('<tr>');
   console.log(contractRow);
@@ -101,5 +100,15 @@ function createContractEl(contract){
     contractRow.append(contractEntry[0]);
       console.log(contractRow[0]);
   }
+  let deleteButton = $(`<td><i class="bi bi-bookmark-x m-1" id="delete-contract"></i></td>`);
+  deleteButton.on('click', removeContract);
+  contractRow.append(deleteButton)
   tableBody.append(contractRow[0]);
 };
+
+function removeContract(eventObject){
+  console.log(`delete button click registered`) 
+  let contractEntryEl = $(eventObject.target).parent().parent();
+  contractEntryEl.remove();
+  console.log(contractEntryEl);
+}

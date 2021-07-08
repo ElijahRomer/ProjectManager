@@ -5,24 +5,24 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"> -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
   <script
   type="text/javascript"
   src=Assets/moment.js
 ></script>
 
-  <title>Document</title>
+  <title>Contract Tracker</title>
 </head>
 
 <body class="bg-light">
   <header class="text-center">
-    <h1 class="text-dark">Welcome to the application!</h1>
+    <h1 class="text-dark">Welcome to the Contract Tracker!</h1>
     <h3 class='text-muted'>The Current Date/ Time is: </h3>
     <span class ="h5 text-info" id='date-time'></span>
   </header>
   <section class="container my-3 mx-auto">
     <div class="row bg-secondary p-3 d-flex justify-content-between">
-      <p class="text-light col-8 m-auto text-center">Welcome to the Contract Tracker! This interface can be easily used to track and manage client requests and contracts for new websites and applications, to better allow you to manage your business. The button to the right will allow you to add new contracts, and pending ones will be displayed below!</p>
+      <p class="text-light col-8 m-auto text-center">Welcome! This interface can be easily used to track and manage client requests and contracts for new websites and applications, to better allow you to manage your business. The button to the right will allow you to add new contracts, and pending ones will be displayed below!</p>
       <button type="button" class="btn btn-primary col-4 w-25 m-auto" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Click Here to Add a New Contract
       </button>
@@ -87,6 +87,7 @@
         <th scope="col">Due Date</th>
         <th scope="col">Days Until Due Date</th>
         <th scope="col">Potential Earnings</th>
+        <th scope="col">Remove Contract</th>
       </tr>
     </thead>
     <tbody>
